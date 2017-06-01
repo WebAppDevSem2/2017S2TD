@@ -40,6 +40,31 @@ public class ProductRepositoty {
                 .orElse(null);
 
     }
+    public static Product getProductByName(String productName) {
+        return getAllProduct().stream()
+                .filter(product -> product.getProductName().equals(productName))
+                .findFirst()
+                .orElse(null);
+
+    }
+    public static Product getProductByString(String s){
+        String str = s;
+        Product temp= getAllProduct().stream()
+                .filter(product -> product.getProductName().startsWith(s))
+                .findFirst()
+                .orElse(null);
+        if (temp != null){
+            return temp;
+        }
+        else if (str.length()>1)
+        {      
+            str=str.substring(0, str.length()-1);
+            return getProductByString(str);
+        }
+        
+        return getProductByString("n");
+        
+    }
 
     public static OrderDAO getOrderDAOById(String orderId) {
         return getAllOrder().stream()
@@ -115,5 +140,7 @@ public class ProductRepositoty {
 
         return myCheckout.getForms();
     }
+    
+  
 
 }
