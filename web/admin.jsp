@@ -127,11 +127,7 @@
                         <div id="stats" class="tab-pane fade">
                             <h3><%=languageMap.get("admin.stats")%></h3>
 <div id="activate" class="tab-pane fade in active">
-                            <h3>
-                                <%=languageMap.get("admin.activateacc")%>
-<!--                                <a href="#" class="btn btn-sm btn-success"><%=languageMap.get("admin.atvall")%></a>
-                                <a href="#" class="btn btn-sm btn-warning"><%=languageMap.get("admin.inall")%></a>-->
-                            </h3>
+                            
 
                             <div id="account-table">
                                 <div class="table-responsive">
