@@ -143,16 +143,18 @@
                                                     <th>Customer ID</th>
                                                     <th>Address</th>
                                                     <th>Order Date</th>
+                                                    <th>Total Payment</th>
                                                     <th>Full name</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 <% for (OrderDAO order : oders) {
-                                                        out.print(
-                                                                 "<td>" + order.getCustomerId() + "</td>"
+                                                        out.print("<td>" + order.getOrderId() + "</td>"
+                                                                +"<td>" + order.getCustomerId() + "</td>"
                                                                 + "<td>" + order.getOrderAddress() + "</td>"
                                                                 + "<td>" + order.getOrderDate() + "</td>"
+                                                                + "<td>" + order.getTotalCost() + "</td>"
                                                                 + "<td>" + order.getOrderFullname() + "</td></tr>");
 
                                                     }
