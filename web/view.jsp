@@ -42,8 +42,8 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/base-ajax.js"></script>
         <script type="text/javascript" src="js/my-script.js"></script>
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id))
                 return;
@@ -51,92 +51,93 @@
             js.id = id;
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=215331448964614";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-</head>
-<body> 
-    <!--header-->
-    <div class="header">
-        <div class="top-header">
-            <div class="container">
-                <div class="top-header-left">
-                    <ul class="support">
-                        <li><a href="error.jsp"><label> </label></a></li>
-                        <li><a href="error.jsp"><%=map.get("live_support")%><span class="live"></span></a></li>
-                    </ul>
-                    <ul class="support">
-                        <li class="van"><a href="error.jsp"><label> </label></a></li>
-                        <li><a href="error.jsp"><%=map.get("shipping")%><span class="live"></span></a></li>
-                    </ul>
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+    </head>
+    <body> 
+        <!--header-->
+        <div class="header">
+            <div class="top-header">
+                <div class="container">
+                    <div class="top-header-left">
+                        <ul class="support">
+                            <li><a href="error.jsp"><label> </label></a></li>
+                            <li><a href="error.jsp"><%=map.get("live_support")%><span class="live"></span></a></li>
+                        </ul>
+                        <ul class="support">
+                            <li class="van"><a href="error.jsp"><label> </label></a></li>
+                            <li><a href="error.jsp"><%=map.get("shipping")%><span class="live"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="top-header-right">
+                        <ul class="support">
+                            <li><a href="language?lang=vi">Tiếng Việt</a><a href="#">|</a> 
+                            <li><a href="language?lang=en">English</a>
+                        </ul>        
+                    </div>
                 </div>
-                <div class="top-header-right">
-                    <ul class="support">
-                        <li><a href="language?lang=vi">Tiếng Việt</a><a href="#">|</a> 
-                        <li><a href="language?lang=en">English</a>
-                    </ul>        
-                </div>
+                <!---->
+                <div class="clearfix"> </div>	
             </div>
-            <!---->
-            <div class="clearfix"> </div>	
+            <div class="clearfix"> </div>		
         </div>
-        <div class="clearfix"> </div>		
     </div>
-</div>
-<div class="bottom-header">
-    <div class="container">
-        <div class="col-sm-3 header-bottom-left">
-            <div class="logo">
-                <a href="index.jsp">E-<span>COMMERCE</span></a>
-            </div>
-            <div class="search">
-                <input type="text" value=""
-                       placeholder="<%=map.get("place_holder")%>" 
-                       onfocus="this.value = '';" 
-                       onblur="if (this.value === '') {
+    <div class="bottom-header">
+        <div class="container">
+            <div class="col-sm-3 header-bottom-left">
+                <div class="logo">
+                    <a href="index.jsp">E-<span>COMMERCE</span></a>
+                </div>
+                <div class="search">
+                    <form method="GET" action="view_2.jsp">
+                        <input type="text"  name="productId" placeholder="<%=map.get("place_holder")%>" 
+                           onfocus="this.value = '';" 
+                           onblur="if (this.value === '') {
                                        this.value = '';
                                    }" >
-                <input type="submit"  value="<%=map.get("search")%>">
-
+                    <input type="submit"  value="<%=map.get("search")%>">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>
+
+            <div class="col-sm-6 header-bottom-right">	
+
+                <% if (ush.getAccrole() == UserRole.GUEST) {%>
+                <div class="account"><a href="login.jsp"><span></span><%=map.get("my_account")%></a></div>
+                <ul class="login">
+                    <li><a href="login.jsp"><span> </span><%=map.get("login")%> </a></li>
+                    <li><a data-toggle="modal" data-target="#registerModal">| <%=map.get("reg")%></a></li>
+                </ul>
+                <% } else {
+                    String settings = "";
+
+                    if (ush.getAccrole().equals(UserRole.ADMINISTRATOR)) {
+                        settings = "admin.jsp";
+                        cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
+                    } else if (ush.getAccrole().equals(UserRole.CUSTOMER)) {
+                        settings = "account.jsp";
+                        cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
+                    } else if (ush.getAccrole().equals(UserRole.STAFF)) {
+                        settings = "staff.jsp";
+                        cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
+                    }
+
+                %>
+                <div class="account"><a href="#"><span></span><%=map.get("account.welcome")%><%=ush.getAccname()%></a></div>
+                <ul class="login">
+                    <li><a href="<%=settings%>"><span> </span><%=map.get("account.setting")%> </a></li> 
+                    <li><a href="logout">| <%=map.get("logout")%> </a></li>
+                </ul>
+                <%}%>
+
+                <div class="cart"><a <%=cartSettings%>><span> </span><%=map.get("cart")%></a></div>
+                <div class="clearfix"> </div>
+            </div>
+
+            <div class="clearfix"> </div>	
         </div>
-
-        <div class="col-sm-6 header-bottom-right">	
-
-            <% if (ush.getAccrole() == UserRole.GUEST) {%>
-            <div class="account"><a href="login.jsp"><span></span><%=map.get("my_account")%></a></div>
-            <ul class="login">
-                <li><a href="login.jsp"><span> </span><%=map.get("login")%> </a></li>
-                <li><a data-toggle="modal" data-target="#registerModal">| <%=map.get("reg")%></a></li>
-            </ul>
-            <% } else {
-                String settings = "";
-
-                if (ush.getAccrole().equals(UserRole.ADMINISTRATOR)) {
-                    settings = "admin.jsp";
-                    cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
-                } else if (ush.getAccrole().equals(UserRole.CUSTOMER)) {
-                    settings = "account.jsp";
-                    cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
-                } else if (ush.getAccrole().equals(UserRole.STAFF)) {
-                    settings = "staff.jsp";
-                    cartSettings = "data-toggle=\"modal\" data-target=\"#myModal\"";
-                }
-
-            %>
-            <div class="account"><a href="#"><span></span><%=map.get("account.welcome")%><%=ush.getAccname()%></a></div>
-            <ul class="login">
-                <li><a href="<%=settings%>"><span> </span><%=map.get("account.setting")%> </a></li> 
-                <li><a href="logout">| <%=map.get("logout")%> </a></li>
-            </ul>
-            <%}%>
-
-            <div class="cart"><a <%=cartSettings%>><span> </span><%=map.get("cart")%></a></div>
-            <div class="clearfix"> </div>
-        </div>
-
-        <div class="clearfix"> </div>	
     </div>
-</div>
 </div>
 
 
@@ -335,10 +336,14 @@
 
             <div class="clearfix"> </div>
         </div>
-            <div class="fb-comments" data-href="http://localhost:8080/ECommerceProject/view.jsp?productId=<%=productId%>" data-width="600" data-numposts="5"></div>
+        <div class="fb-comments" data-href="http://localhost:8080/ECommerceProject/view.jsp?productId=<%=productId%>" data-width="600" data-numposts="5"></div>
+       
+            
+
         <!---->
 
         <div class="products">
+            <%=map.get("products")%>
         </div>
         <div class="product-left">
             <div class="col-md-4 chain-grid">
@@ -427,8 +432,7 @@
             <div class="clearfix"> </div>
         </div>
         <div class="clearfix"> </div>
-    </div> 
-
+    </div>   
     <div class="sub-cate">
         <div class=" top-nav rsidebar span_1_of_left">
             <h3 class="cate"><%=map.get("cate")%></h3>
